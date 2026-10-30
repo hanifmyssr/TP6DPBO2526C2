@@ -82,6 +82,10 @@ Aset disimpan di `src/assets/` (dan juga tercopy ke `out/production/FlappyBird/a
 
 
 
+https://github.com/user-attachments/assets/79d1bedd-6b01-4d76-a17f-d2d4211a6ae1
+
+
+
 ### Kontrol Permainan
 
 | Tombol | Fungsi |
