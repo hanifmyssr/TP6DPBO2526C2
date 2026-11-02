@@ -81,7 +81,10 @@ Aset disimpan di `src/assets/` (dan juga tercopy ke `out/production/FlappyBird/a
 
 
 
-https://github.com/user-attachments/assets/79d1bedd-6b01-4d76-a17f-d2d4211a6ae1
+
+
+https://github.com/user-attachments/assets/d2fcb2ff-72e7-4976-8694-1f856d78cc52
+
 
 
 
