@@ -28,7 +28,6 @@ Aset disimpan di `src/assets/` (dan juga tercopy ke `out/production/FlappyBird/a
 - Burung: `yellowbird-upflap.png`, `yellowbird-midflap.png`, `yellowbird-downflap.png`
 - Pipa: `pipe-green.png`
 - UI: `message.png`, `gameover.png`
-- Angka skor: `numbers/0.png` - `numbers/9.png`
 - Suara: `wing.wav`, `point.wav`, `hit.wav`, `die.wav`, `swoosh.wav`
 
 ### Konfigurasi Permainan
@@ -68,7 +67,7 @@ Aset disimpan di `src/assets/` (dan juga tercopy ke `out/production/FlappyBird/a
 2. **Gravitasi & Gerakan Burung**: Pada `move()`, `velocityY` bertambah dengan gravitasi, `playerY` diperbarui secara presisi, lalu posisi burung disinkronkan. Burung berputar sesuai `velocityY` (maks -30° saat naik, maks 90° saat jatuh).
 3. **Kontrol**: Tekan `SPACE` untuk lompat - mengatur `velocityY = jumpVelocity` dan memutar suara `wing`. Animasi sayap berputar berdasarkan urutan `up`, `mid`, `down`, `mid` setiap ~120ms.
 4. **Spawn Pipa**: `pipesCooldown` memanggil `placePipes()` tiap 1500ms. Posisi Y pipa atas diacak dengan celah (`openingSpace = frameHeight/4`) untuk membentuk pasangan pipa atas-bawah.
-5. **Pergerakan & Deteksi**: Setiap pipa bergerak ke kiri (`posX += pipeVelocityX`). Jika terjadi tabrakan antara burung dan pipa → `endGame(hitSound)`. Jika burung melewati tepi kanan pipa atas (belum `passed`) → skor bertambah, update tampilan skor (gambar angka), putar `pointSound`, tandai `passed = true`.
+5. **Pergerakan & Deteksi**: Setiap pipa bergerak ke kiri (`posX += pipeVelocityX`). Jika terjadi tabrakan antara burung dan pipa → `endGame(hitSound)`. Jika burung melewati tepi kanan pipa atas (belum `passed`) → skor bertambah, Skor ditampilkan oleh `JLabel` berisi teks angka yang diperbarui lewat `updateScore()`, putar `pointSound`, tandai `passed = true`.
 6. **Pembersihan**: Pipa yang sudah keluar layar dihapus dengan `pipes.removeIf(...)`.
 7. **Collision dengan Tanah**: Jika burung menyentuh `groundY` → posisinya dikoreksi dan `endGame(dieSound)`.
 8. **Game Over**: Saat game over, game loop tetap repaint tapi `move()` tidak dijalankan. Layar menampilkan gambar `gameover.png` dan teks "Tekan R untuk restart". Tekan `R` untuk memanggil `restart()`.
@@ -99,4 +98,3 @@ Aset disimpan di `src/assets/` (dan juga tercopy ke `out/production/FlappyBird/a
 - Deteksi tabrakan dengan pipa dan tanah
 - Efek suara (lompat, skor, tabrakan, jatuh, transisi menu)
 - Tampilan Game Over dengan instruksi restart
-- Skor ditampilkan menggunakan gambar angka (mirip Flappy Bird asli)

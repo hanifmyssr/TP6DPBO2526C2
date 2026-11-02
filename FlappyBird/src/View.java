@@ -15,7 +15,6 @@ public class View extends JPanel {
     private BufferedImage backgroundImage;
     private BufferedImage baseImage;
     private BufferedImage gameOverImage;
-    private BufferedImage[] digitImages = new BufferedImage[10];
 
     public View(Logic logic) {
         this.logic = logic;
@@ -23,40 +22,24 @@ public class View extends JPanel {
         backgroundImage = Assets.scale(Assets.load("assets/background-day.png"), width, height);
         baseImage = Assets.scale(Assets.load("assets/base.png"), 420, 140);
         gameOverImage = Assets.scale(Assets.load("assets/gameover.png"), 240, 53);
-        for (int i = 0; i < 10; i++) {
-            digitImages[i] = Assets.scale(Assets.load("assets/numbers/" + i + ".png"), Assets.SCALE);
-        }
+        
 
         setPreferredSize(new Dimension(width, height));
         setFocusable(true);
         addKeyListener(logic);
 
-        // JLabel skor: isinya gambar angka dari aset
+        // JLabel skor
         setLayout(null);
-        scoreLabel = new JLabel("", SwingConstants.CENTER);
-        scoreLabel.setBounds(0, 50, width, 45);
+        scoreLabel = new JLabel("0", SwingConstants.CENTER);
+        scoreLabel.setFont(new Font("Arial", Font.BOLD, 48));
+        scoreLabel.setForeground(Color.WHITE);
+        scoreLabel.setBounds(0, 40, width, 70);
         add(scoreLabel);
-        updateScore(0);
     }
 
     // menyusun gambar angka sesuai skor lalu menampilkannya di JLabel
     public void updateScore(int score) {
-        String text = String.valueOf(score);
-        int gap = 2;
-        int w = -gap;
-        for (int i = 0; i < text.length(); i++) {
-            w += digitImages[text.charAt(i) - '0'].getWidth() + gap;
-        }
-        BufferedImage img = new BufferedImage(w, digitImages[0].getHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = img.createGraphics();
-        int x = 0;
-        for (int i = 0; i < text.length(); i++) {
-            BufferedImage d = digitImages[text.charAt(i) - '0'];
-            g2.drawImage(d, x, 0, null);
-            x += d.getWidth() + gap;
-        }
-        g2.dispose();
-        scoreLabel.setIcon(new ImageIcon(img));
+        scoreLabel.setText(String.valueOf(score));
     }
 
     private void drawOutlined(Graphics2D g2, String text, Font font, int centerX, int y) {
